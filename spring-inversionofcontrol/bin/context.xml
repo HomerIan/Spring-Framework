@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- starter XML file -->
+<!-- Beans = root container -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- Use/set properties file -->
+	<context:property-placeholder
+		location="classpath:record.properties" />
+
+	<bean id="record"
+		class="com.homerreyes.schoolapp.domain.SchoolRecord">
+		<property name="id" value="${record.id}"></property>
+		<property name="name" value="${record.name}"></property>
+		<property name="person" ref="${record.person}"></property>
+	</bean>
+
+	<!-- Define your beans here -->
+	<!-- Equivalent to setter method -->
+	<bean id="record"
+		class="com.homerreyes.schoolapp.domain.SchoolRecord">
+		<property name="id" value="1234"></property>
+		<property name="name" value="John"></property>
+		<property name="person" ref="instructor"></property>
+	</bean>
+
+	<!-- Define Constructor -->
+	<bean id="recordConstructor"
+		class="com.homerreyes.schoolapp.domain.SchoolRecord">
+		<constructor-arg index="0" value="5678" />
+		<constructor-arg index="1" value="Ana" />
+		<constructor-arg index="2" ref="student" />
+	</bean>
+
+	<bean id="student" class="com.homerreyes.schoolapp.domain.Student">
+	</bean>
+	<bean id="instructor"
+		class="com.homerreyes.schoolapp.domain.Instructor"></bean>
+</beans>
