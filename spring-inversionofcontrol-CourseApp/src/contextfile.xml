@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- starter XML file -->
+<!-- Beans = root container -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<!-- Use/set properties file -->
+	<context:property-placeholder location = "classpath:courseInfo.properties"/>
+	
+	<bean id = "info" class = "com.homerianreyes.courseapp.domain.CourseInfo">
+		<constructor-arg index = "0" value = "${courseInfo.code}"/>
+		<constructor-arg index = "1" value = "${courseInfo.description}"/>
+		<constructor-arg index = "2" value = "${courseInfo.unit}"/>
+		<constructor-arg index = "3" ref = "${courseInfo.course}"/>
+		<constructor-arg index = "4" ref = "${courseInfo.professor}"/>
+	</bean>
+	
+    <!-- Define your beans here
+    <bean id = "info" class = "com.homerianreyes.courseapp.domain.CourseInfo">
+    	<property name = "code" value = "PHILO1"></property>
+    	<property name = "description" value = "Philosophy in times of Crises"></property>
+    	<property name = "unit" value = "3"></property>
+    	<property name = "course" ref = "SupportCourse"></property>
+    	<property name = "professor" ref = "Professor"></property>
+    </bean>-->
+    
+    <!-- Define Constructor
+    <bean id = "infoConstructor" class = "com.homerianreyes.courseapp.domain.CourseInfo">
+    	<constructor-arg index="0" value = "ITL221"/>
+    	<constructor-arg index="1" value = "OOP Lab"/>
+    	<constructor-arg index="2" value = "1"/>
+    	<constructor-arg index="3" ref = "SpecializationCourse"/>
+    	<constructor-arg index="4" ref = "Professor"/>
+    </bean>-->
+    
+    <!-- class objects -->
+    <bean id = "SupportCourse" class = "com.homerianreyes.courseapp.domain.SupportCourse">
+    </bean>
+    <bean id = "SpecializationCourse" class = "com.homerianreyes.courseapp.domain.SpecializationCourse">
+    </bean>
+    
+    <bean id = "Professor" class = "com.homerianreyes.courseapp.domain.Professor">
+    	<constructor-arg index = "0" value = "${Professor.empNo}"/>
+    	<constructor-arg index = "1" value = "${Professor.name}"/>
+    	<constructor-arg index = "2" value = "${Professor.specialization}"/>
+    </bean>
+
+</beans>
